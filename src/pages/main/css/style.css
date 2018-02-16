@@ -96,7 +96,8 @@ p {
     grid-template-rows: 56px 1fr;
     grid-template-areas:  "header"
                           "chatWindow";
-    background: blue;
+    background: var(--white);
+    box-shadow: 0px 9px 13px var(--chatMessageGrey);
     z-index: 30;
   }
 
@@ -179,7 +180,7 @@ p {
   .chatWindow__yesPlease {
     padding: var(--chatMessagePadding);
     color: var(--chatMessageWhite);
-    background: #6633CC;
+    background: rgb(102, 51, 204);
     border-radius: var(--chatMessageBorderRight);
   }
 

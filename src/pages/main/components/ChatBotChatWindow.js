@@ -10,7 +10,7 @@ const ChatBotChatWindow = () => {
       <div className="chatWindow__companyMessage">Hi! Do you have any questions I can answer for you?</div>
       <div className="chatWindow__chatOptions">
         <div className="chatWindow__notNow">Not now</div>
-        <div className="cbhatWindow__yesPlease">Yes please</div>
+        <div className="chatWindow__yesPlease">Yes please</div>
       </div>
       <TypingIndicator animationInterval={500} />
     </div>
