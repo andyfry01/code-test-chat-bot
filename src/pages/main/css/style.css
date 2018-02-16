@@ -200,6 +200,12 @@ p {
     height: 20px;
     width: 20px;
     border-radius: 50%;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+
+  .--ellipseAnimate {
+    opacity: 0;
   }
 }
   
