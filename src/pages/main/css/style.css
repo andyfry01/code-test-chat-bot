@@ -67,6 +67,73 @@ p {
   .boilerplate__listItem {
     font-size: 1.1rem;
   }
+
+  .chatBotContainer {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 380px 1fr;
+    grid-template-rows: 1fr 461px 56px;
+    z-index: 20;
+    background: purple;
+    opacity: 0.5;
+  }   
+
+  .chatBot__main {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 56px 1fr;
+    grid-template-areas:  "header"
+                          "chatWindow";
+    background: blue;
+    z-index: 30;
+  }
+
+  /* Opener/closer for chat window */
+  .--open {
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
+  }  
+
+  .--closed {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+
+  }  
+
+  .chatbot__header {
+    display: grid;
+    grid-template-columns: 1fr 42px;
+    grid-template-rows: auto;
+    grid-template-areas: "headerText toggler";
+    grid-area: header;
+    padding: 10px 20px;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .chatbot__headerText {
+    grid-area: headerText;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .chatbot__toggler {
+    grid-area: toggler;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .chatbot__togglerIcon {
+    margin: 0 auto;
+  }
+
+  .chatbot__chatWindow {
+    background: green;
+    grid-area: chatWindow;
+  }
 }
   
 /*Medium devices (tablets, 768px and up)*/
