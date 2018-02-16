@@ -1,3 +1,9 @@
+:root {
+  --black: rgb(2,2,2);
+  --white: rgb(254, 254, 254);
+  --brightWhite: rgb(255, 255, 255);
+}
+
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
