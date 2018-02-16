@@ -1,7 +1,13 @@
 :root {
-  --black: rgb(2,2,2);
+  --black: rgb(33,33,33);
   --white: rgb(254, 254, 254);
-  --brightWhite: rgb(255, 255, 255);
+  --chatMessageWhite: rgb(255, 255, 255);
+  --chatMessageBlack: rgb(118, 118, 118);
+  --chatMessageGrey: rgb(219, 219, 219);
+  --chatMessageLightGrey: rgb(245, 244, 245);
+  --chatMessagePadding: 15px;
+  --chatMessageBorderLeft: 7px 7px 7px 0px;
+  --chatMessageBorderRight: 7px 7px 0px 7px;
 }
 
 body {
@@ -82,8 +88,6 @@ p {
     grid-template-columns: 30% 380px 1fr;
     grid-template-rows: 1fr 461px 56px;
     z-index: 20;
-    background: purple;
-    opacity: 0.5;
   }   
 
   .chatBot__main {
