@@ -1,7 +1,7 @@
 // React
 import React, { Component } from 'react';
  
-let timeoutId = undefined
+let ellipsesTimeoutId = undefined
 
 class TypingIndicator extends Component {
   constructor(props) {
@@ -13,6 +13,10 @@ class TypingIndicator extends Component {
     this.step = this.step.bind(this)
     this.startAnimation = this.startAnimation.bind(this)
     this.endAnimation = this.endAnimation.bind(this)
+  }
+
+  componentDidMount(){
+    this.startAnimation()
   }
 
   animateEllipses(index) {
@@ -34,7 +38,7 @@ class TypingIndicator extends Component {
     let curTime = Date.now()
     let progress = curTime - prevTime
     if (progress < this.props.animationInterval) {
-      timeoutId = window.requestAnimationFrame(() => this.step(prevTime, lastIndex))
+      ellipsesTimeoutId = window.requestAnimationFrame(() => this.step(prevTime, lastIndex))
     } else {
       if (lastIndex === this.state.animationClasses.length - 1) {
         nextIndex = 0
@@ -42,22 +46,22 @@ class TypingIndicator extends Component {
         nextIndex = lastIndex += 1
       }
       this.animateEllipses(nextIndex)
-      timeoutId = window.requestAnimationFrame(() => this.step(curTime, nextIndex))
+      ellipsesTimeoutId = window.requestAnimationFrame(() => this.step(curTime, nextIndex))
     }
   }
 
   startAnimation() {
-    timeoutId = window.requestAnimationFrame(() => this.step(Date.now(), -1))
+    ellipsesTimeoutId = window.requestAnimationFrame(() => this.step(Date.now(), -1))
   }
 
   endAnimation() {
-    window.cancelAnimationFrame(timeoutId)
+    window.cancelAnimationFrame(ellipsesTimeoutId)
     this.setState(state => {return { animationClasses: ['', '', ''] }})
   }
 
   render() {
     return (
-      <div className="typingIndicator" onClick={this.startAnimation}>
+      <div className="typingIndicator">
         <div className={`typingIndicator__ellipse ${this.state.animationClasses[0]}`}></div>
         <div className={`typingIndicator__ellipse ${this.state.animationClasses[1]}`}></div>
         <div className={`typingIndicator__ellipse ${this.state.animationClasses[2]}`}></div>
