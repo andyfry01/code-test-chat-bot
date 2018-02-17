@@ -36,7 +36,7 @@ p {
     grid-column: 1 / 2;
     grid-row: 1 / 3;
     z-index: 10;
-    background: linear-gradient(rgba(254, 254, 254, 0.5), rgba(254, 254, 254, 0.9))
+    background: linear-gradient(rgba(254, 254, 254, 0.5), rgba(254, 254, 254, 0.9));
   }
 
   .main__logo {
@@ -110,7 +110,6 @@ p {
   .--closed {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
-
   }  
 
   .chatbot__header {
@@ -143,10 +142,11 @@ p {
 
   .chatWindow {
     grid-area: chatWindow;
-    margin: 20px;
+    padding: 20px;
     display: grid;
     grid-template-columns: 30% 40% 30%;
     grid-auto-rows: max-content;
+    overflow-y: scroll;
     grid-row-gap: 20px;
   }
 
@@ -170,18 +170,23 @@ p {
     grid-row: auto;
   }
 
-  .chatWindow__notNow {
+  .chatWindow__negativeOption {
     padding: var(--chatMessagePadding);
     color: var(--chatMessageBlack);
     background: var(--chatMessageGrey);
     border-radius: var(--chatMessageBorderRight);
+    grid-column: 1 / 2;
   }
 
-  .chatWindow__yesPlease {
+  .chatWindow__affirmativeOption {
     padding: var(--chatMessagePadding);
     color: var(--chatMessageWhite);
     background: rgb(102, 51, 204);
     border-radius: var(--chatMessageBorderRight);
+    grid-column: 2 / 3;
+  }
+  .chatWindow__spacer {
+    height: 50px;
   }
 
   .typingIndicator {
