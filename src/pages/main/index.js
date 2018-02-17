@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 // Components
 import BoilerplateText from './components/BoilerplateText';
-import ChatBot from './components/ChatBot';
+import ChatBotContainer from './components/ChatBotContainer';
 
 // Assets/styling
 import logo from '../../assets/logo.svg';
@@ -19,7 +19,7 @@ class Main extends Component {
             <img className="main__logo" src={logo} alt="etrade logo" />
             <BoilerplateText />
           </div>
-          <ChatBot /> 
+          <ChatBotContainer /> 
         </div>
       </div>
     );
