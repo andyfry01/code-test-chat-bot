@@ -56,7 +56,7 @@ class ChatBotChatWindow extends Component {
   triggerScriptStep(pathName, stepNum) {
 
     let chatMessages = this.state.chatMessages
-    let chatScriptSteps = chatScript.scriptPathsFast[pathName]
+    let chatScriptSteps = chatScript.scriptPaths[pathName]
     let currentScriptStep = chatScriptSteps[stepNum]
 
     if (chatScriptIsNotOver(currentScriptStep, this)) {
@@ -83,7 +83,7 @@ class ChatBotChatWindow extends Component {
       }
       if (stepName === 'displayFollowUpPrompt') {
         nextMessage = <div className="chatWindow__chatOptions" key={Date.now()} > 
-                        <UserInputGetter  className="chatWindow__affirmativeOption" 
+                        <UserInputGetter  className="chatWindow__affirmativeOption --long" 
                                           copy="Actually, I changed my mind" 
                                           handleClick={() => { this.answerPrompt('yes') }} /> 
                       </div>
@@ -144,7 +144,7 @@ class ChatBotChatWindow extends Component {
           <UserInputGetter  className="chatWindow__negativeOption" 
                             copy="Not now" 
                             handleClick={() => { this.answerPrompt('no') }} />
-          <UserInputGetter  className="chatWindow__affirmativeOption" 
+          <UserInputGetter  className="chatWindow__affirmativeOption --short" 
                             copy="Yes please" 
                             handleClick={() => { this.answerPrompt('yes') }} />
         </div>
