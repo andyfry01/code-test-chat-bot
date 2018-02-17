@@ -13,8 +13,8 @@ class ChatBot extends Component {
     }
     this.toggleChatWindow = this.toggleChatWindow.bind(this)
   }
-  toggleChatWindow(chatWindowStatus){
-    if (chatWindowStatus === 'closed') {
+  toggleChatWindow(){
+    if (this.state.chatBotOpen === true) {
       return this.setState(state => {
         return {
           chatBotOpen: false
@@ -32,8 +32,8 @@ class ChatBot extends Component {
       return (
         <div className="chatBotContainer">
           <div className="chatBot__main --closed">
-            <ChatBotHeader toggleChatWindow={this.toggleChatWindow} />
-            <ChatBotChatWindow />
+            <ChatBotHeader toggleChatWindow={this.toggleChatWindow} open={this.state.chatBotOpen} />
+            <ChatBotChatWindow toggleChatWindow={this.toggleChatWindow} />
           </div>
         </div>
       )
@@ -41,8 +41,8 @@ class ChatBot extends Component {
     return (
       <div className="chatBotContainer">
         <div className="chatBot__main --open">
-          <ChatBotHeader toggleChatWindow={this.toggleChatWindow} />
-          <ChatBotChatWindow />
+          <ChatBotHeader toggleChatWindow={this.toggleChatWindow} open={this.state.chatBotOpen} />
+          <ChatBotChatWindow toggleChatWindow={this.toggleChatWindow} />
         </div>
       </div>
     )  
