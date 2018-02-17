@@ -5,49 +5,44 @@ import React, { Component } from 'react';
 import ChatBotHeader from './ChatBotHeader'
 import ChatBotChatWindow from './ChatBotChatWindow'
 
-class ChatBot extends Component {
+class ChatBotContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      chatBotOpen: true
+      chatBotOpen: true,
+      openCloseToggler: "--open"
     }
     this.toggleChatWindow = this.toggleChatWindow.bind(this)
   }
   toggleChatWindow(){
     if (this.state.chatBotOpen === true) {
-      return this.setState(state => {
+      this.setState(state => {
         return {
-          chatBotOpen: false
+          chatBotOpen: false,
+          openCloseToggler: '--closed'
         }
       })
+      return
     }
-    return this.setState(state => {
+    this.setState(state => {
       return {
-        chatBotOpen: true
+        chatBotOpen: true,
+        openCloseToggler: '--open'
       }
     })
+    return
   }
   render() {
-    if (!this.state.chatBotOpen) {
-      return (
-        <div className="chatBotContainer">
-          <div className="chatBot__main --closed">
-            <ChatBotHeader toggleChatWindow={this.toggleChatWindow} open={this.state.chatBotOpen} />
-            <ChatBotChatWindow toggleChatWindow={this.toggleChatWindow} />
-          </div>
-        </div>
-      )
-    }
     return (
       <div className="chatBotContainer">
-        <div className="chatBot__main --open">
+        <div className={`chatBot__main ${this.state.openCloseToggler}`}>
           <ChatBotHeader toggleChatWindow={this.toggleChatWindow} open={this.state.chatBotOpen} />
           <ChatBotChatWindow toggleChatWindow={this.toggleChatWindow} />
         </div>
       </div>
-    )  
+    )
   }
 }
 
-export default ChatBot;
+export default ChatBotContainer;
 
