@@ -1,0 +1,22 @@
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+p {
+  line-height: 1.5;
+}
+
+:root {
+  --black: rgb(33,33,33);
+  --white: rgb(254, 254, 254);
+  --chatMessageWhite: rgb(255, 255, 255);
+  --chatMessageBlack: rgb(118, 118, 118);
+  --chatMessageGrey: rgb(219, 219, 219);
+  --chatMessageLightGrey: rgb(245, 244, 245);
+  --chatMessagePadding: 15px;
+  --chatMessageBorderLeft: 7px 7px 7px 0px;
+  --chatMessageBorderRight: 7px 7px 0px 7px;
+}

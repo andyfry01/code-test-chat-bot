@@ -1,0 +1,129 @@
+.chatBotContainer {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 380px 20%;
+  grid-template-rows: 1fr 461px 56px;
+  z-index: 20;
+}   
+
+.chatBot__main {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 56px 1fr;
+  grid-template-areas:  "header"
+                        "chatWindow";
+  background: var(--white);
+  box-shadow: 0px 9px 13px var(--chatMessageGrey);
+  z-index: 30;
+}
+
+/* Opener/closer for chat window */
+.--open {
+  grid-column: 2 / 3;
+  grid-row: 2 / 4;
+}  
+
+.--closed {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}  
+
+.chatbot__header {
+  display: grid;
+  grid-template-columns: 1fr 42px;
+  grid-template-rows: auto;
+  grid-template-areas: "headerText toggler";
+  grid-area: header;
+  padding: 10px 20px;
+  background: var(--black);
+  color: var(--white);
+}
+
+.chatbot__headerText {
+  grid-area: headerText;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.chatbot__toggler {
+  grid-area: toggler;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chatbot__togglerIcon {
+  margin: 0 auto;
+}
+
+.chatWindow {
+  grid-area: chatWindow;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-auto-rows: max-content;
+  overflow-y: scroll;
+  grid-row-gap: 20px;
+}
+
+.chatWindow__companyMessage {
+  grid-column: 1 / 3;
+  grid-row: auto;
+  color: var(--chatMessageBlack);
+  background: var(--chatMessageLightGrey);
+  border-radius: var(--chatMessageBorderLeft);
+  font-size: 17px;
+  line-height: 20px;
+  padding: var(--chatMessagePadding);
+}
+
+.chatWindow__chatOptions {
+  display: grid;
+  grid-template-columns: 1fr 10% 27% 37%;
+  grid-template-rows: auto;
+  grid-column: 1 / 4;
+  grid-row: auto;
+}
+
+.chatWindow__negativeOption {
+  padding: var(--chatMessagePadding);
+  margin-right: 20px;
+  color: var(--chatMessageBlack);
+  background: var(--chatMessageGrey);
+  border-radius: var(--chatMessageBorderRight);
+  grid-column: 2 / 4;
+  transition: transform 0.1s ease;
+}
+
+.chatWindow__affirmativeOption {
+  padding: var(--chatMessagePadding);
+  margin-right: 20px;
+  color: var(--chatMessageWhite);
+  background: rgb(102, 51, 204);
+  border-radius: var(--chatMessageBorderRight);
+  transition: transform 0.1s ease;
+}
+
+/* util classes for chat options */
+.--active:hover {
+  transform:translate(-2px, -2px);
+  box-shadow: 1x 1x 1px var(--chatMessageGrey);
+}
+
+.--invisible {
+  display: none;
+}
+
+.--short {
+  grid-column: 4 / 5;
+}
+
+.--long {
+  grid-column: 3 / 5;
+}
+
+.chatWindow__spacer {
+  height: 50px;
+}

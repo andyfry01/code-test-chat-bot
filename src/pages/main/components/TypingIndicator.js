@@ -1,5 +1,8 @@
 // React
 import React, { Component } from 'react';
+
+// Styling
+import typingIndicator from '../css/typing-indicator.css';
  
 let ellipsesTimeoutId = undefined
 
