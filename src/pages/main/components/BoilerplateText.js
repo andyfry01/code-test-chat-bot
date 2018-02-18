@@ -1,6 +1,7 @@
 import React  from 'react';
 
 const BoilerplateText = () => {
+  // this world could use some more Bob Ross-isms
   return (
     <div className="boilerplate">
       <h1 className="boilerplate__header">Bob Ross Lorem</h1>

@@ -8,7 +8,7 @@ class ChatOptions extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeOption: undefined,
+      selectedOption: undefined,
       buttonsActive: true,
       affirmativeOptionToggler: '--active',
       negativeOptionToggler: '--active'
@@ -16,12 +16,15 @@ class ChatOptions extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  // if the selected option changes, we deactivate the chat options for this row of options,
+  // set the chat option that wasn't selected to invisible, and call this.props.answerPrompt 
+  // so ChatBotChatWindow knows which script path to start running 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.activeOption !== this.state.activeOption) {
-      if (this.state.activeOption === 'negative') {
+    if (prevState.selectedOption !== this.state.selectedOption) {
+      if (this.state.selectedOption === 'negative') {
         this.setState(state => {
           return {
-            affirmativeOptionToggler: '--invisible',
+            affirmativeOptionToggler: '--invisible --inactive',
             negativeOptionToggler: '--inactive',
             buttonsActive: false
           }
@@ -30,7 +33,7 @@ class ChatOptions extends Component {
       } else {
         this.setState(state => {
           return {
-            negativeOptionToggler: '--invisible',
+            negativeOptionToggler: '--invisible --inactive',
             affirmativeOptionToggler: '--inactive',
             buttonsActive: false
           }
@@ -47,22 +50,23 @@ class ChatOptions extends Component {
     if (choice === 'no') {
       this.setState(state => {
         return {
-          activeOption: 'negative'
+          selectedOption: 'negative'
         }
       })
       return false
     } 
     this.setState(state => {
       return {
-        activeOption: 'affirmative'
+        selectedOption: 'affirmative'
       }
     })
     return false
   }
 
   render() {
-    /* Assigns props and click handlers to this.props.children according to what type of user input button 
-    is being passed as a child to the ChatOptions component */
+    /* Assigns props and click handlers to this.props.children according 
+    to what type of user input button is being passed as a child to the 
+    ChatOptions component */
     const inputGettersWithProps = React.Children.map(this.props.children, (inputGetter) => {
       if (inputGetter.props.inputType === "no") {
         return React.cloneElement(inputGetter, {

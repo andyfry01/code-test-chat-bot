@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import ChatBotHeader from './ChatBotHeader'
 import ChatBotChatWindow from './ChatBotChatWindow'
 
-// styling
+// Styling
 import chatbot from '../css/chatbot.css';
 
 class ChatBotContainer extends Component {

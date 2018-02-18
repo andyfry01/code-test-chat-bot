@@ -8,7 +8,7 @@ import ChatBotContainer from './components/ChatBotContainer';
 // Assets/styling
 import logo from '../../assets/logo.svg';
 import main from './css/main.css';
-import css from './css/vars-and-reset.css';
+import varsAndReset from './css/vars-and-reset.css';
 
 class Main extends Component {
   render() {

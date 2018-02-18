@@ -24,12 +24,15 @@ class ChatBotChatWindow extends Component {
     this.triggerScriptStep = this.triggerScriptStep.bind(this)
   }
 
+  // if the script path changes (either undefined -> affirmative, affirmative -> negative, etc.)
+  // we trigger the execution of that relevant script path
   componentDidUpdate(nextProps, prevState) {
     if (prevState.currentScriptPath !== this.state.currentScriptPath) {
       this.stepScriptPath(this.state.currentScriptPath, -1)
     }
   }
 
+  // takes user input and sets script path in state
   answerPrompt(answer) {
     if (answer === 'no') {
       this.setState(state => {
@@ -47,27 +50,41 @@ class ChatBotChatWindow extends Component {
     return
   }
 
+  // Increments the step number in a script path and calls triggerScriptStep
   stepScriptPath(pathName, stepNum) {
     window.clearTimeout(chatTimeoutId)
     let nextStep = stepNum + 1
     this.triggerScriptStep(pathName, nextStep)
   }
 
+  /* Determines which script step to execute and pushes the relevant component for
+  that step into this.state.chatMessages
+  this.state.chatMessages is rendered within the chat window */
   triggerScriptStep(pathName, stepNum) {
 
+    // first, we grab the current array of chat messages
     let chatMessages = this.state.chatMessages
+
+    // then we figure out which chat script path we're following and what step of the
+    // script that we're on
     let chatScriptSteps = chatScript.scriptPaths[pathName]
     let currentScriptStep = chatScriptSteps[stepNum]
 
+    // first, check if the script is over
     if (chatScriptIsNotOver(currentScriptStep, this)) {
 
+      // if it's not, we get the name of the next script step and the duration of that step
       let stepName = currentScriptStep.name
       let stepDuration = currentScriptStep.duration
-      let nextMessage = undefined
 
+      // before we add any messages, we get rid of any typing indicators 
+      // that may be in the chatMessage array
       if (chatMessages.length > 0) {
         chatMessages = removeTypingIndicator(chatMessages)
       }
+      
+      // now, we determine what component to render for the current step in the script
+      let nextMessage = undefined
       
       if (stepName === 'showIndicator') {
         nextMessage = <TypingIndicator key={Date.now()} animationInterval={500} />
@@ -87,16 +104,25 @@ class ChatBotChatWindow extends Component {
                         <UserInputGetter inputType="followup" />
                       </ChatOptions>
       }
+
+      // after determining the component to render, we push it into chatMessages
       if (nextMessage !== undefined) {
         chatMessages.push(nextMessage)
       }
 
+      // and finally, we update this.state.chatMessages with the updated chatMessages array
+      // containing the next message
       this.setState(state => {
         return {
           chatMessages: chatMessages
         }
       }) 
+
+      // after updating state, we scroll the chat window to the bottom to accomodate the 
+      // new message
       scrollChatWindow()
+
+      // and the process begins again
       chatTimeoutId = window.setTimeout(() => { 
         this.stepScriptPath(pathName, stepNum)
       }, stepDuration)
@@ -133,7 +159,7 @@ class ChatBotChatWindow extends Component {
 
   render(){
     // used to move chat spacer on addition of new message
-    // add 2 to accommondate two messages already in chat window
+    // add 2 to accommondate two messages already in chat window on component mount
     let chatListLength = this.state.chatMessages.length + 2
     return (
       <div className="chatWindow">
