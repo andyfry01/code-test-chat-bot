@@ -188,14 +188,14 @@ p {
     transition: transform 0.1s ease;
   }
 
-  .chatWindow__negativeOption:hover {
+  /* util classes for chat options */
+  .--active:hover {
     transform:translate(-2px, -2px);
     box-shadow: 1x 1x 1px var(--chatMessageGrey);
   }
 
-  .chatWindow__affirmativeOption:hover {
-    transform:translate(-2px, -2px);
-    box-shadow: 1x 1x 1px var(--chatMessageGrey);
+  .--invisible {
+    display: none;
   }
 
   .--short {

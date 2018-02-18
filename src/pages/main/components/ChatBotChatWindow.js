@@ -24,11 +24,10 @@ class ChatBotChatWindow extends Component {
     this.triggerScriptStep = this.triggerScriptStep.bind(this)
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.currentScriptPath !== this.state.currentScriptPath) {
-      this.stepScriptPath(nextState.currentScriptPath, -1)
+  componentDidUpdate(nextProps, prevState) {
+    if (prevState.currentScriptPath !== this.state.currentScriptPath) {
+      this.stepScriptPath(this.state.currentScriptPath, -1)
     }
-    return true
   }
 
   answerPrompt(answer) {
@@ -69,6 +68,7 @@ class ChatBotChatWindow extends Component {
       if (chatMessages.length > 0) {
         chatMessages = removeTypingIndicator(chatMessages)
       }
+      
       if (stepName === 'showIndicator') {
         nextMessage = <TypingIndicator key={Date.now()} animationInterval={500} />
       } 
@@ -123,7 +123,7 @@ class ChatBotChatWindow extends Component {
         }, () => {
           that.props.toggleChatWindow()
           window.clearTimeout(chatTimeoutId)
-          return false
+          return true
         })
       } 
       return true

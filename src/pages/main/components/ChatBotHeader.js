@@ -7,10 +7,8 @@ import chevronUp from '../../../assets/chevron-up.svg'
 
 const ChatBotHeader = (props) => {
   let icon = undefined
-  let chatWindowStatus = undefined
   if (props.open === true) {
     icon = x
-    
   } else {
     icon = chevronUp
   }
