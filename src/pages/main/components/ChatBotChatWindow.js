@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import TypingIndicator from './TypingIndicator'
 import UserInputGetter from './UserInputGetter'
 import PlainMessage from './PlainMessage'
+import ChatOptions from './ChatOptions'
 
 // Chatbot script
 import chatScript from '../etc/chatScript'
@@ -82,11 +83,9 @@ class ChatBotChatWindow extends Component {
                                     copy={chatScript.messages.message2} />
       }
       if (stepName === 'displayFollowUpPrompt') {
-        nextMessage = <div className="chatWindow__chatOptions" key={Date.now()} > 
-                        <UserInputGetter  className="chatWindow__affirmativeOption --long" 
-                                          copy="Actually, I changed my mind" 
-                                          handleClick={() => { this.answerPrompt('yes') }} /> 
-                      </div>
+        nextMessage = <ChatOptions answerPrompt={this.answerPrompt} key={Date.now()}>
+                        <UserInputGetter inputType="followup" />
+                      </ChatOptions>
       }
       if (nextMessage !== undefined) {
         chatMessages.push(nextMessage)
@@ -140,14 +139,10 @@ class ChatBotChatWindow extends Component {
       <div className="chatWindow">
         <PlainMessage className="chatWindow__companyMessage" 
                       copy="Hi! Do you have any questions I can answer for you?"/>
-        <div className="chatWindow__chatOptions">
-          <UserInputGetter  className="chatWindow__negativeOption" 
-                            copy="Not now" 
-                            handleClick={() => { this.answerPrompt('no') }} />
-          <UserInputGetter  className="chatWindow__affirmativeOption --short" 
-                            copy="Yes please" 
-                            handleClick={() => { this.answerPrompt('yes') }} />
-        </div>
+        <ChatOptions answerPrompt={this.answerPrompt} >
+          <UserInputGetter inputType="no" />
+          <UserInputGetter inputType="yes" />
+        </ChatOptions>
         {this.state.chatMessages.map(message => message)}
         <div className="chatWindow__spacer" style={{ gridRow: `${chatListLength + 1} / ${chatListLength + 2}` }}></div>
       </div>
