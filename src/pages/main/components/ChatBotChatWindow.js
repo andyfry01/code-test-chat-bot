@@ -87,7 +87,7 @@ class ChatBotChatWindow extends Component {
       let nextMessage = undefined
       
       if (stepName === 'showIndicator') {
-        nextMessage = <TypingIndicator key={Date.now()} animationInterval={500} />
+        nextMessage = <TypingIndicator key={`TypingIndicator-${Date.now()}`} animationInterval={500} />
       } 
       if (stepName === 'showMessage1') {
         nextMessage = <PlainMessage key={Date.now()} 
@@ -134,7 +134,7 @@ class ChatBotChatWindow extends Component {
     }
 
     function removeTypingIndicator(chatMessages) {
-      return chatMessages.filter(chatItem => chatItem.type.name !== 'TypingIndicator')
+      return chatMessages.filter(chatItem => chatItem.key.toLowerCase().indexOf('TypingIndicator') > -1)
     }
     
     function chatScriptIsNotOver(currentScriptStep, that){
