@@ -1,7 +1,7 @@
 module.exports = {
   messages: {
-    message1: 'Great! We\'ll get you connected to a representative',
-    message2: 'No problem! If you decide you need me, just click "Contact Us"'
+    message1: 'Great! We\'ll get you connected to a representative.',
+    message2: 'No problem! If you decide you need me, just click "Contact Us".'
   },
   scriptPaths: {
     affirmative: [{ name: 'showIndicator', duration: 3500}, 
