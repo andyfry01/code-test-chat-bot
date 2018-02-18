@@ -134,7 +134,7 @@ class ChatBotChatWindow extends Component {
     }
 
     function removeTypingIndicator(chatMessages) {
-      return chatMessages.filter(chatItem => chatItem.key.toLowerCase().indexOf('TypingIndicator') > -1)
+      return chatMessages.filter(chatItem => chatItem.key.indexOf('TypingIndicator') < 0)
     }
     
     function chatScriptIsNotOver(currentScriptStep, that){
